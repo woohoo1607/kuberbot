@@ -1,4 +1,4 @@
-APP=$(shell basename $(shell git remote get-url origin))
+APP=$(shell basename $(shell git remote get-url origin) | sed 's/\.git//')
 REGISTRY=europe-west3-docker.pkg.dev/devops-419309/kuberbot
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 
