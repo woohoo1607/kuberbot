@@ -45,7 +45,7 @@ arm: format get
 	$(call build_builder,linux,arm64)
 
 image:
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH} --build-arg TARGETOS=linux
+	$(call image_builder,${TARGETOS},${TARGETARCH})
 
 image_linux:
 	$(call image_builder,linux,amd64)
@@ -63,8 +63,7 @@ push:
 	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 clean:
-	rm -rf kuberbot
-	docker rmi ${REGISTRY}/${APP}:${VERSION}-$(TARGETARCH)
+	$(call cleaner,${TARGETARCH})
 
 clean_linux:
 	$(call cleaner,amd64)
