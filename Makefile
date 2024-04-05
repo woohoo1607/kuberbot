@@ -63,7 +63,8 @@ push:
 	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 clean:
-	$(call cleaner,$(TARGETARCH))
+	rm -rf kuberbot
+	docker rmi ${REGISTRY}/${APP}:${VERSION}-$(TARGETARCH)
 
 clean_linux:
 	$(call cleaner,amd64)
